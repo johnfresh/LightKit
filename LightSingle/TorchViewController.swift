@@ -36,7 +36,7 @@ class TorchViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
 
 	var torchLevelControl = 1{
 		didSet{
-
+            
 		}
 	}
 

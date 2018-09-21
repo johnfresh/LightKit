@@ -73,6 +73,7 @@ class SosViewController: UIViewController {
 	func endingSingle(){
 		timer.invalidate()
 		breakTimer.invalidate()
+        index = 0
 		do{
 			try led?.lockForConfiguration()
 			defer{
