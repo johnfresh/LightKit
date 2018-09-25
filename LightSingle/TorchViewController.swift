@@ -9,53 +9,74 @@
 import UIKit
 import AVFoundation
 
-class TorchViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
-	func numberOfComponents(in pickerView: UIPickerView) -> Int {
-		return 1
-	}
+class TorchViewController: UIViewController {
+	var torchLevel : Float = 1.0
 
-	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return torchLevelArray.count
-	}
+	
 
-	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		return String(torchLevelArray[row])
-	}
+    @IBAction func torchLevelHandler(_ sender: UISlider) {
+        torchLevel = sender.value
+        adjustTheTorchLevel()
+        toggleIndicater.setTitle("ON", for: .normal)
+    }
+    
 
-	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		torchLevelControl = torchLevelArray[row]
-	}
-
-	@IBOutlet weak var torchLevel: UILabel!
-
-	@IBOutlet weak var levelPicker: UIPickerView!
-
+    @IBAction func torchSwitch(_ sender: UIButton) {
+       toggleTorch()
+    }
+    
+    @IBOutlet weak var toggleIndicater: UIButton!
+    
+    func toggleTorch(){
+        do{
+            try torch?.lockForConfiguration()
+            defer{
+                torch?.unlockForConfiguration()
+            }
+            if torch?.torchMode.rawValue == 1{
+                torch?.torchMode = .off
+                toggleIndicater.setTitle("OFF", for: .normal)
+            }else{
+                adjustTheTorchLevel()
+                toggleIndicater.setTitle("ON", for: .normal)
+            }
+            
+        }catch{
+                    print("functoggleTorch error")
+        }
+    }
+    
+    func adjustTheTorchLevel(){
+        defer {
+            torch?.unlockForConfiguration()
+        }
+        do{
+            try torch?.lockForConfiguration()
+            try torch?.setTorchModeOn(level: torchLevel)
+        }catch{
+            print("something wrong with the adjustTheTorchLevel Func")
+        }
+    }
+    
 	var torch = AVCaptureDevice.default(for: .video)
 
-	var torchLevelArray = [1,2,3,4]
-
-	var torchLevelControl = 1{
-		didSet{
-            
-		}
-	}
-
-	func setTorch(){
-		do{
-			try torch?.lockForConfiguration()
-			defer{
-				torch?.unlockForConfiguration()
-			}
-			torch?.torchLevel
-		}catch{
-			print("unable to lock")
-		}
-	}
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        toggleTorch()
+        /*if torch?.torchMode.rawValue == 1{
+            toggleTorch()
+        }*/
+    }
+    
+    override func viewDidLayoutSubviews() {
+        toggleIndicater.layer.cornerRadius = 0.5 * toggleIndicater.bounds.size.width
     }
 
     override func didReceiveMemoryWarning() {

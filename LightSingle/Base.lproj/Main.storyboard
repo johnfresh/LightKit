@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ogg-eP-vfb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ogg-eP-vfb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,14 +33,43 @@
                     <view key="view" contentMode="scaleToFill" id="bzr-ey-DqN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mj9-DP-hg7">
+                                <rect key="frame" x="142" y="177" width="217" height="155"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Okl-oo-2hY" id="UNT-ST-IIH"/>
+                                    <outlet property="delegate" destination="Okl-oo-2hY" id="dvz-GZ-TzW"/>
+                                </connections>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1o-WO-Nsl">
+                                <rect key="frame" x="203" y="419" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="flashingControl:" destination="Okl-oo-2hY" eventType="touchUpInside" id="s3z-pK-MTA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fu1-wa-sf4">
+                                <rect key="frame" x="16" y="232" width="101" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Pfr-Cb-2Hv"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Flash" id="ooq-Hq-Lvi"/>
+                    <connections>
+                        <outlet property="flashingIndicator" destination="f1o-WO-Nsl" id="hq9-Uj-7kK"/>
+                        <outlet property="frequencyPicker" destination="Mj9-DP-hg7" id="Vyn-UD-21b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hX-aR-4cI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-327" y="471"/>
+            <point key="canvasLocation" x="-327.19999999999999" y="470.91454272863569"/>
         </scene>
         <!--Torch-->
         <scene sceneID="NFX-rU-hvQ">
@@ -50,23 +79,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OkM-tF-fNd">
-                                <rect key="frame" x="167" y="72" width="192" height="169"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="7fw-Dn-xC4" id="vJV-Tu-9n6"/>
-                                    <outlet property="delegate" destination="7fw-Dn-xC4" id="ObJ-GD-rP4"/>
-                                </connections>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brighteness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQa-qA-Hnl">
-                                <rect key="frame" x="16" y="137" width="119" height="38"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brightness Contol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQa-qA-Hnl">
+                                <rect key="frame" x="30" y="237" width="165" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.050000000000000003" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="rO5-Xu-uyb">
+                                <rect key="frame" x="28" y="310" width="319" height="19"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="maximumTrackTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="thumbTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="torchLevelHandler:" destination="7fw-Dn-xC4" eventType="valueChanged" id="fev-Gc-IKa"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9U-WA-vOf">
+                                <rect key="frame" x="77" y="342" width="220" height="220"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="r9U-WA-vOf" secondAttribute="height" multiplier="220:220" id="Yg1-OD-tN2"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="torchSwitch:" destination="7fw-Dn-xC4" eventType="touchUpInside" id="d0A-NG-9GG"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="r9U-WA-vOf" firstAttribute="top" secondItem="rO5-Xu-uyb" secondAttribute="bottom" priority="999" constant="13" id="3Ig-8w-tez"/>
+                            <constraint firstItem="rO5-Xu-uyb" firstAttribute="leading" secondItem="PDk-kY-m5n" secondAttribute="leading" constant="30" id="CPP-x7-VJk"/>
+                            <constraint firstItem="r9U-WA-vOf" firstAttribute="centerX" secondItem="rO5-Xu-uyb" secondAttribute="centerX" id="IBq-gG-V6p"/>
+                            <constraint firstItem="PDk-kY-m5n" firstAttribute="bottom" secondItem="r9U-WA-vOf" secondAttribute="bottom" constant="56" id="MXX-2R-S4U"/>
+                            <constraint firstItem="PDk-kY-m5n" firstAttribute="trailing" secondItem="rO5-Xu-uyb" secondAttribute="trailing" constant="30" id="S8o-fx-qg5"/>
+                            <constraint firstItem="rO5-Xu-uyb" firstAttribute="centerY" secondItem="PDk-kY-m5n" secondAttribute="centerY" id="cLk-0K-Ick"/>
+                            <constraint firstItem="r9U-WA-vOf" firstAttribute="leading" secondItem="PDk-kY-m5n" secondAttribute="leading" constant="77" id="vvf-oX-HKX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PDk-kY-m5n"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Torch" id="cWm-n9-oXM">
@@ -74,8 +127,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="levelPicker" destination="OkM-tF-fNd" id="te3-uM-RZX"/>
-                        <outlet property="torchLevel" destination="mQa-qA-Hnl" id="fs4-uY-M9W"/>
+                        <outlet property="toggleIndicater" destination="r9U-WA-vOf" id="8bJ-mk-5nE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0S-eO-v9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
