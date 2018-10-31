@@ -85,10 +85,12 @@ class SosViewController: UIViewController {
 		}
 	}
 
-
+    @IBOutlet weak var sosIndecater: UIButton!
+    
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        sosIndecater.layer.cornerRadius = 0.5 * sosIndecater.bounds.size.width
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
