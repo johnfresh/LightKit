@@ -87,6 +87,16 @@ class SosViewController: UIViewController {
 
     @IBOutlet weak var sosIndecater: UIButton!
     
+	@IBAction func toggleSOS(_ sender: UIButton) {
+		if sender.titleLabel?.text == "ON"{
+			sender.titleLabel?.text = "OFF"
+			print("compare is succseful")
+			viewWillDisappear(true)
+		}else{
+			//sender.titleLabel?.text = "ON"
+			viewDidAppear(true)
+		}
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -97,6 +107,7 @@ class SosViewController: UIViewController {
 		try? openLed()
 		startTimer()
 		print("sos view did apper")
+		sosIndecater.setTitle("ON", for: .normal)
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
