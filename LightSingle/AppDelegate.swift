@@ -14,13 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 
-	/*
 
 
-	private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+	internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
 		// Override point for customization after application launch.
 		return true
 	}
+/*
+			func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
 */
 
 	func applicationWillResignActive(_ application: UIApplication) {
