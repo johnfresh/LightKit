@@ -106,9 +106,12 @@ class SosViewController: UIViewController {
 		}*/
 	}
 
+    override func viewDidLayoutSubviews() {
+        sosIndecater.layer.cornerRadius = 0.5 * sosIndecater.bounds.size.width
+        }
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        sosIndecater.layer.cornerRadius = 0.5 * sosIndecater.bounds.size.width
+        
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
