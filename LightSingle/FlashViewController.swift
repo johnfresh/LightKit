@@ -169,12 +169,15 @@ class FlashViewController: UIViewController , UIPickerViewDelegate,UIPickerViewD
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        flashingIndicator.layer.cornerRadius = 0.5 * flashingIndicator.bounds.size.width
+        
        // flashingIndicator.setTitle("ON", for: .normal)
 
 
 		// Do any additional setup after loading the view.
 	}
+    override func viewDidLayoutSubviews() {
+       flashingIndicator.layer.cornerRadius = 0.5 * flashingIndicator.bounds.size.width
+    }
 
 	override func viewDidAppear(_ animated: Bool) {
 		flashing()
